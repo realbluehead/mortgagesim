@@ -1,0 +1,40 @@
+<div class="p-4">
+  <h2 class="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+    Summary
+  </h2>
+
+  <div class="grid grid-cols-3 gap-3">
+    <div
+      class="flex flex-col items-start p-3 bg-gray-50 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700"
+    >
+      <span class="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-wide"
+        >Monthly Payment</span
+      >
+      <span class="text-lg font-light text-blue-600 dark:text-blue-400"
+        >€{{ monthlyPayment() | number: '1.2-2' }}</span
+      >
+    </div>
+
+    <div
+      class="flex flex-col items-start p-3 bg-gray-50 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700"
+    >
+      <span class="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-wide"
+        >Total Interest</span
+      >
+      <span class="text-lg font-light text-amber-600 dark:text-amber-400"
+        >€{{ totalInterest() | number: '1.2-2' }}</span
+      >
+    </div>
+
+    <div
+      class="flex flex-col items-start p-3 bg-gray-50 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700"
+    >
+      <span class="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-wide"
+        >Total Cost</span
+      >
+      <span class="text-lg font-light text-gray-900 dark:text-white"
+        >€{{ totalCost() | number: '1.2-2' }}</span
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="p-4">
+  <h2 class="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+    Principal vs Interest
+  </h2>
+
+  <div class="flex justify-center" *ngIf="principal > 0 && totalInterest >= 0">
+    <div #pieChartContainer style="width: 100%; height: 300px"></div>
+  </div>
+  <p *ngIf="principal <= 0" class="text-gray-400 dark:text-gray-500 text-center py-8 text-xs">
+    Enter a principal amount to see the breakdown
+  </p>
+</div>

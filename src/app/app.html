@@ -1,0 +1,112 @@
+<div [class.dark]="isDark()" class="min-h-screen bg-white dark:bg-gray-950">
+  <!-- Header -->
+  <header
+    class="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50"
+  >
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-2xl font-light text-gray-900 dark:text-white">Mortgage Calculator</h1>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 font-light">
+            Calculate and analyze mortgage payments
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <button
+            (click)="toggleDarkMode()"
+            class="px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors font-normal"
+            [title]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+          >
+            {{ isDark() ? '☀️' : '🌙' }}
+          </button>
+          <button
+            (click)="exportData()"
+            class="px-3 py-2 text-sm bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors font-normal"
+          >
+            Export
+          </button>
+          <button
+            (click)="importData()"
+            class="px-3 py-2 text-sm bg-blue-600 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors font-normal"
+          >
+            Import
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <!-- Left Sidebar: Input Section -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-24">
+          <app-input-section
+            [initialStartDate]="startDate()"
+            [initialPrincipal]="principal()"
+            [initialInterestRate]="interestRate()"
+            [initialDuration]="duration()"
+            (startDateChange)="startDate.set($event)"
+            (principalChange)="principal.set($event)"
+            (interestRateChange)="interestRate.set($event)"
+            (durationChange)="duration.set($event)"
+          ></app-input-section>
+        </div>
+      </div>
+
+      <!-- Right Content: Dashboard and Charts -->
+      <div class="lg:col-span-3 space-y-6">
+        <!-- Summary Dashboard -->
+        <div
+          class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800"
+        >
+          <app-summary-dashboard
+            [monthlyPayment]="monthlyPayment"
+            [totalInterest]="totalInterest"
+            [totalCost]="totalCost"
+          ></app-summary-dashboard>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Pie Chart -->
+          <div
+            class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800"
+          >
+            <app-pie-chart
+              [principal]="principal()"
+              [totalInterest]="totalInterest()"
+              [isDark]="isDark()"
+            ></app-pie-chart>
+          </div>
+
+          <!-- Bar Chart -->
+          <div
+            class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800"
+          >
+            <app-bar-chart [yearlyData]="yearlyData()" [isDark]="isDark()"></app-bar-chart>
+          </div>
+        </div>
+
+        <!-- Amortization Schedule -->
+        <div
+          class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800"
+        >
+          <app-amortization-schedule [schedule]="amortizationSchedule"></app-amortization-schedule>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 mt-12">
+    <div class="max-w-7xl mx-auto px-6 py-4 text-center">
+      <p class="text-xs text-gray-500 dark:text-gray-400 font-light">
+        © 2026 Mortgage Calculator. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</div>
+
+<router-outlet />

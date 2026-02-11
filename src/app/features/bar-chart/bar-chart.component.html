@@ -1,0 +1,15 @@
+<div class="p-4">
+  <h2 class="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+    Yearly Breakdown
+  </h2>
+
+  <div class="flex justify-center" *ngIf="yearlyData && yearlyData.length > 0">
+    <div #barChartContainer style="width: 100%; height: 300px"></div>
+  </div>
+  <p
+    *ngIf="!yearlyData || yearlyData.length === 0"
+    class="text-gray-400 dark:text-gray-500 text-center py-8 text-xs"
+  >
+    No data available
+  </p>
+</div>
